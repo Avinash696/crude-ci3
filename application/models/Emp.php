@@ -22,7 +22,7 @@ class Emp extends CI_Model {
 
     public function addrecord($data){
         $this->db->insert('ci4table',$data);
-    }
+       }   
     public function deleteRecord($id){
 
          $this->db->query("DELETE FROM ci4table WHERE id= $id");
@@ -35,6 +35,6 @@ class Emp extends CI_Model {
         
        
     }
-    
+
 
 }

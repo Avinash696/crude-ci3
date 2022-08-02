@@ -13,7 +13,7 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
     $data['rows'] = $this->Emp->getAll();
-
+		print_r($data);
     $this->load->view('home', $data);
 	}
 	
