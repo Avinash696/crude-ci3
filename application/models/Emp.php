@@ -31,10 +31,16 @@ class Emp extends CI_Model {
 
     public function updateRecord($username,$password,$id){
     
-         $this->db->query("UPDATE  ci4table SET name='$username' , password =$password WHERE id= $id ");
-        
+         $this->db->query("UPDATE  ci4table SET name='$username' , password =$password WHERE id= $id ");    
        
     }
 
+    // public function uploadImage($imageFile){
+    //     $this -> db ->query("INSERT INTO 'imagetable' ('imageFile') VALUES ('imageFile')");
+    // }
 
+    public function uploadImage($data){
+        // $this->db->insert('imagetable',$data);
+        $this ->db ->query("INSERT INTO `imagetable` ( `imageFile`) VALUES ( '$data')");
+       }  
 }
