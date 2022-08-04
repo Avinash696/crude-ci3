@@ -48,7 +48,7 @@ class Welcome extends CI_Controller {
 	public function imgUploaded(){
 
         $data=[
-            'id'=>$this->input->post('id'),
+            // 'id'=>$this->input->post('id'),
             'imageFile'=>$this->input->post('imageFile')
         ];
 
@@ -58,7 +58,9 @@ class Welcome extends CI_Controller {
 
 
 	public function do_upload()
-	{
+	{       
+			// $data = array('upload_data' => $this->upload->data());
+			
 			$config['upload_path']          = './upload/';
 			$config['allowed_types']        = 'gif|jpg|png';
 			// $config['max_size']             = 100;
@@ -66,22 +68,26 @@ class Welcome extends CI_Controller {
 			// $config['max_height']           = 768;
 
 			$this->load->library('upload', $config);
-
-			if ( ! $this->upload->do_upload('userfile'))
-			{
+			$imgFile = $this ->input->post('imageFile');
+			if ( ! $this->upload->do_upload('imageFile'))
+			{     
+					echo $imgFile;
 					$error = array('error' => $this->upload->display_errors());
-
-					$this->load->view('upload_form', $error);
-					echo "No Saved Img";
-			}	
-			else	
+					echo "not uploded";
+			}
+			else
 			{
 					$data = array('upload_data' => $this->upload->data());
-					print_r($data['file_name']);
-					$this->Emp->uploadImage($data['file_name']);
-					
-					echo "Saved".$data['file_name'];
-			}
-		
+					$jsonData = json_encode($data);
+					$fileName = $data['upload_data']['file_name'];
+
+
+					$mainData = array("id"=>null ,"name"=>$data['upload_data']['file_name'],"location"=> $data['upload_data']['file_path']);
+					print_r($mainData);
+					$this->Emp->addImgNameLoc($mainData);
+
+					echo "Saved Img" ;
+			
 	}
+
 }

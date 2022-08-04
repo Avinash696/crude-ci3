@@ -40,7 +40,21 @@ class Emp extends CI_Model {
     // }
 
     public function uploadImage($data){
+      
+        $this->db->insert('imagetable',$data);
+        // $this ->db ->query(" INSERT INTO 'imagetable' (imageFile) VALUES ('$data')");       INSERT INTO `imagetable` (`id`, `imageFile`) VALUES (NULL, '');
+        // $this ->db ->query("INSERT INTO `imagetable` ( `imageFile`) VALUES ($data[])"); 
+    }  
+
+    public function addImgName($data){
+
         // $this->db->insert('imagetable',$data);
-        $this ->db ->query("INSERT INTO `imagetable` ( `imageFile`) VALUES ( '$data')");
-       }  
+        $this ->db ->query("INSERT INTO `imagetable` ( `imageFile`) VALUES ('$data')");
+       }   
+       public function addImgNameLoc($data){
+
+        $this->db->insert('imgLoc',$data);
+        // $this ->db ->query("INSERT INTO `imagetable` ( `imageFile`) VALUES ('$data')");
+       }   
+
 }
