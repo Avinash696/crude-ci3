@@ -82,12 +82,15 @@ class Welcome extends CI_Controller {
 					$fileName = $data['upload_data']['file_name'];
 
 
-					$mainData = array("id"=>null ,"name"=>$data['upload_data']['file_name'],"location"=> $data['upload_data']['file_path']);
-					print_r($mainData);
-					$this->Emp->addImgNameLoc($mainData);
+					$mainData['mainData'] = array("id"=>null,"name"=>$data['upload_data']['file_name'],"location"=> $data['upload_data']['file_path']);
+					// print_r($mainData);
+					$this->Emp->addImgNameLoc($mainData['mainData']);
 
-					echo "Saved Img" ;
-			
+					// echo "Saved Img" ;
+					$string_version = explode(',', $mainData['mainData']);
+					// echo( json_encode($mainData));
+					echo ($string_version);
+			}
 	}
 
 }
